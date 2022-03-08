@@ -2,8 +2,6 @@ import React from 'react';
 import img1 from '../images/bg1.png';
 import img2 from '../images/bg2.png';
 import img3 from '../images/bg3.png';
-import img4 from '../images/bg4.png';
-import img5 from '../images/bg5.png';
 // import {
 //   MDBCarousel,
 //   MDBCarouselInner,
@@ -40,12 +38,6 @@ export default function Carousel() {
       </div>
       <div className="carousel-item">
         <img src={img3} className=" w-100" alt="..."/>
-      </div>
-      <div className="carousel-item">
-        <img src={img4} className=" w-100" alt="..."/>
-      </div>
-      <div className="carousel-item">
-        <img src={img5} className=" w-100" alt="..."/>
       </div>
     </div>
     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

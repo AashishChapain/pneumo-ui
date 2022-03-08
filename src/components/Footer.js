@@ -44,7 +44,7 @@ const iconstyle = { fontSize: "14px" }
 
 const FooterContainer = styled.div`
 
-      background-color: #212529;
+      background-color: #000;
       width: 100%;
       display: flex;
       flex-direction: column;
@@ -81,11 +81,10 @@ const Footer = () => {
       </div>
       <div>
           <NavItems>
-              <Links to="/tutorial"><FontAwesomeIcon icon={faFileAlt} style={iconstyle} /> How to use?</Links>
               <Links to="/contact"><FontAwesomeIcon icon={faPhoneAlt} style={iconstyle} /> Contact us</Links>
           </NavItems>
       </div>
-      <p style={paragraph}>&copy;2022 Old Image Restoration. All Right Reserved | <Links to="#">Terms and Condition</Links></p>
+      <p style={paragraph}>&copy;2022 Pneumothorax Segmentation App | All Right Reserved | <Links to="#">Terms and Condition</Links></p>
     </FooterContainer>
 
   </>;

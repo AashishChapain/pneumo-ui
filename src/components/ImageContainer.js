@@ -2,16 +2,37 @@ import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import dragNdrop from '../images/drgndrop.png';
 import { useDropzone } from 'react-dropzone';
-import Button from '../components/Button';
+// import Button from '../components/Button';
+import Button from '@mui/material/Button';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import axios from "axios";
 import Dropdown from "./Dropdown";
-
+import { padding } from "@mui/system";
+import TextContainer from "./TextContainer";
+import Backdrop from '@mui/material/Backdrop';
+import Video from '../Video/backVideo.mp4';
 const ImageNText = styled.div`
 
 text-align: center;
 justify-content: center;
 
 `;
+
+const VideoBg = styled.video`
+width:100%;
+height:100%;
+object-fit:cover;
+-o-object-fit:cover;
+`;
+
 const DragNdropContainer = {
   border: "1px dashed grey",
   padding: "25vh 0",
@@ -49,17 +70,25 @@ const img = {
   minheight: "60vh",
   width: "60vw",
   height: "60vh",
-  objectFit:"scale-down"
+  objectFit: "scale-down"
 };
 
 
 
 const ImageContainer = () => {
 
+  const [dropdownValue, setdropdownValue] = React.useState('');
   const [images, setImages] = useState([]);
   const [newImages, setnewImages] = useState();
   const [newImageArrived, setnewImageArrived] = useState(false);
   const [imagePreview, setImagePreview] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
+  const [fetchingImage, setFetchingImage] = useState(true);
+  var intervalID = 0
+
+  const handleChange = (event) => {
+    setdropdownValue(event.target.value);
+  };
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
@@ -86,28 +115,69 @@ const ImageContainer = () => {
     </div>
   ));
 
+
   useEffect(() => {
     images.forEach(image => URL.revokeObjectURL(image.preview));
   }, [images]);
 
+  const getOutput = async () => {
+
+    try {
+      await axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/api/',
+      }).then((response) => {
+        const data = response.data;
+        // if (data.length === 0 || data === undefined) {
+        //     return
+        // }
+        // if(data[0].n_image.includes('Default.jpg')) {
+        //     return
+        // } 
+        console.log(data);
+        setFetchingImage(false);
+        setnewImages("http://127.0.0.1:8000" + data.outputImage);
+        setnewImageArrived(true);
+        setisLoading(false);
+        console.log("new image arrived");
+        clearInterval(intervalID)
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const handleSubmit = (e) => {
-    console.log("object");
     e.preventDefault();
+    setImagePreview(false);
+    setisLoading(true);
+    // handleToggle();
     let form_data = new FormData();
     if (images !== null) {
-      console.log(images);
-      form_data.append('image', images[0])
+      // console.log(images);
+      form_data.append('inputImage', images[0])
     }
-    let url = 'http://localhost:8000/api/old_image/';
+    let url = 'http://localhost:8000/api/';
     axios.post(url, form_data, {
       headers: {
         'content-type': 'multipart/form-data'
       }
+    }).then(res => {
+      const data = res.data;
+      const resultImage = data.outputImage;
+      setnewImages("http://127.0.0.1:8000" + resultImage);
+      setnewImageArrived(true);
+      setisLoading(false);
+      console.log("new image arrived");
     })
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => console.log(err))
+
+    // intervalID = setInterval(getOutput, 1000)
+
+    // if(!fetchingImage) {
+    //   clearInterval(intervalID)
+
+    //   intervalID = null
+    // }
   };
 
 
@@ -115,51 +185,80 @@ const ImageContainer = () => {
     alert("Please select the image first !!!")
   }
 
-  useEffect(()=>{
-    axios({
-      method: 'get',
-      url: 'http://127.0.0.1:8000/api/old_image',
-    })
-      .then((response)=>{
-       const data=response.data
-        console.log(data);
-        setnewImages(data.image);
-        setnewImageArrived(true);
-      });
+  const downloadImage = () => {
+    console.log("downloaded image");
+  }
+  // const [open, setOpen] = React.useState(false);
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+  // const handleToggle = () => {
+  //   setOpen(!open);
+  // };
 
-  },[images]);
+  // useEffect(() => {
+  //   axios({
+  //     method: 'get',
+  //     url: 'http://127.0.0.1:8000/api/old_image',
+  //   })
+  //     .then((response) => {
+  //       const data = response.data;
+  //       console.log(data);
+  //       // setnewImages(data[0].n_image);
+  //       // setnewImageArrived(true);
+  //     });
+
+  // }, [images]);
 
   if (imagePreview) {
     return (
       <>
+        <TextContainer message={"Select the method and Press convert"} />
         <div className="container" style={thumbsContainer}>
           {thumbs}
         </div>
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center",padding:"10px 20px" }}>
-          <Dropdown />
-          <button type="button" className="btn btn-dark" onClick={handleSubmit}>Convert</button>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
+          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={handleSubmit} >Convert</Button>
+          {/* <button type="button" className="btn btn-dark" onClick={handleSubmit}>Convert</button> */}
           {/* <Button name="Convert" task={handleSubmit}></Button> */}
         </div>
       </>
     );
   }
-  // else if(newImageArrived){
-  //   return (
-  //     <>
-  //       <div className="container" style={thumbsContainer}>
-  //       {newImages}
-  //       </div>
-  //       <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center",padding:"10px 20px" }}>
-  //         <Dropdown />
-  //         <button type="button" className="btn btn-dark" onClick={handleSubmit}>Convert</button>
-  //         {/* <Button name="Convert" task={handleSubmit}></Button> */}
-  //       </div>
-  //     </>)
+  else if (isLoading) {
+    return (
+      <>
+        <VideoBg autoPlay muted src={Video} type='video/mp4' />
+      </>
+    );
+  }
+  else if (newImageArrived) {
+    return (
+      <>
+        <TextContainer message={"Segmented Image from the model "} />
+        <div className="container" style={thumbsContainer}>
+          <div style={thumb}>
+            <div style={thumbInner}>
+              <img
+                src={newImages}
+                style={img}
+                alt="New Image"
+              />
+            </div>
+          </div>
+        </div>
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
+          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={downloadImage} >Download</Button>
 
-  // } 
+        </div>
+      </>)
+
+  }
+
   else {
     return (
       <>
+        <TextContainer message={"Drag and Drop or Click on the area below to upload the file"} />
         <div className="container">
           <div {...getRootProps({ className: 'dropzone' })} style={DragNdropContainer}>
             <form>
@@ -173,20 +272,18 @@ const ImageContainer = () => {
             </form>
           </div>
         </div>
-        
-        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center",padding:"10px 20px" }}>
-        
-          <Dropdown />
-          <button type="button" className="btn btn-dark" onClick={throwError}>Convert</button>
-          {/* <Button name="Convert" task={throwError}></Button> */}
+
+        <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
+          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={throwError} >Convert</Button>
+
         </div>
       </>
 
     );
-    
+
   }
 
-  
+
 };
 
 export default ImageContainer;

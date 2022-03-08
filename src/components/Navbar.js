@@ -4,7 +4,10 @@ import logo from '../images/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 import { Link as LinkS } from 'react-router-dom';
+
 
 const NavMenu = styled.div`
      @media screen and (max-width:480px){
@@ -37,21 +40,27 @@ const Navbar = () => {
     const iconstyle = { fontSize: "14px" }
     return (
         <>
-            <nav className="navbar navbar-dark bg-dark">
+            <nav className="navbar" style={{color: 'red', backgroundColor: '#6C63FF'}}>
                 <div className="container-fluid d-flex mx-3 my-1">
                     <Links className="navbar-brand d-flex" to="/">
                         <img src={logo} alt="..." height="60" />
-                        <div className='mx-2'>Old Image <br /> Restoration</div>
+                        <div className='mx-2'>Pneumothorax <br /> Segmentation</div>
                     </Links>
 
                     <NavMenu>
                         <NavItems>
-                            <Navlinks>
+                            {/* <Navlinks>
                                 <Links to="/tutorial"><FontAwesomeIcon icon={faFileAlt} style={iconstyle} /> How to use?</Links>
-                            </Navlinks>
+                            </Navlinks> */}
 
                             <Navlinks>
+                                <Links to="/"><FontAwesomeIcon icon={faHome} style={iconstyle} /> Home</Links>
+                            </Navlinks>
+                            <Navlinks>
                                 <Links to="/contact"><FontAwesomeIcon icon={faPhoneAlt} style={iconstyle} /> Contact us</Links>
+                            </Navlinks>
+                            <Navlinks>
+                                <Links to="/contact"><FontAwesomeIcon icon={faInfo} style={iconstyle} /> About us</Links>
                             </Navlinks>
                         </NavItems>
                     </NavMenu>

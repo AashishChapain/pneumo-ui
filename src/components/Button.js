@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom';
 
 const Buttons = styled(Link)`
 border-radius: 50px;
-background: #212529;
+background: #6C63FF;
 padding: 1rem 3rem;
 text-decoration: none;
-color: #fff;
+color: white;
 font-size: 2rem;
 outline: none;
 border: none;
@@ -24,9 +24,7 @@ transition: all 0.2s ease-in-out;
    box-shadow: 0 0 10px #D3D3D3;
 &:hover{
 transition: all 0.2s ease-in-out;
-background:#01Bf71;
-color: #fff;
-}
+color: black;}
 `;
 const Button = (props) => {
   const buttonstyle = {

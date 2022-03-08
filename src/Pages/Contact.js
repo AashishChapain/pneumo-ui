@@ -11,7 +11,7 @@ const Contact = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="card-shadow">
-              <iframe title="map"src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5942.091989099057!2d85.31946307042999!3d27.68055173449244!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x951b3c8ac733e3ec!2sIOE%2C%20Pulchowk%20Campus!5e0!3m2!1sen!2snp!4v1643452750217!5m2!1sen!2snp" width="100%" height="450"></iframe>
+              <iframe title="map"src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d883.184431988603!2d85.31849352917118!3d27.694499898924864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19ae08c068d9%3A0x475bed1f66d060c!2sInstitute%20of%20Engineering%2CThapathali%20Campus!5e0!3m2!1sen!2snp!4v1645434175054!5m2!1sen!2snp" width="100%" height="450"></iframe>
               </div>
             </div>
             <div className="col-lg-6">
@@ -56,8 +56,8 @@ const Contact = () => {
                       </div>
                       <div className="mx-2">
                         <h6 className="font-weight-medium">Address</h6>
-                        <p className="">Pulchowk Engineering Campus
-                          <br /> Pulchowk,Lalitpur</p>
+                        <p className="">Thapathali Engineering Campus  
+                          <br /> Thapathali, Kathmandu</p>
                       </div>
                     </div>
                   </div>
@@ -68,8 +68,8 @@ const Contact = () => {
                       </div>
                       <div className="mx-2">
                         <h6 className="font-weight-medium">Phone</h6>
-                        <p className="">01-4524547
-                          <br /> 9845127457</p>
+                        <p className="">01-4246307
+                          <br /> 9860020333</p>
                       </div>
                     </div>
                   </div>
@@ -81,8 +81,8 @@ const Contact = () => {
                       <div className="mx-2">
                         <h6 className="font-weight-medium">Email</h6>
                         <p className="">
-                          pulchowkcampus@edu.np
-                          <br /> ioe@pcampus.edu.np
+                          tcioe.edu.np
+                          <br /> info@tcioe.edu.np
                         </p>
                       </div>
                     </div>

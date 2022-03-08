@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/6310e3d1-4c99-4ef9-8ef8-cc14eb56b148/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Pneumoapi",
+    "appService.deploySubpath": "."
+}

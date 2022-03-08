@@ -22,8 +22,8 @@ const IntroContainer = () => {
     return <>
     <div className="fluid-container my-2">
         <TextContainer>
-            <TextHeading>Welcome to Old Image Regeneration</TextHeading>
-            <Text>A simple and user friendly website which allows you to convert your old scratches photoes into high resolution and high quality like as new !! </Text>
+            <TextHeading>Pneumothorax Segmentor</TextHeading>
+            <Text>Helps you effectively and reliably segment the Pneumothorax affected X-rays !!! </Text>
         </TextContainer>
 
     </div>
