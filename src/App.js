@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ConverterPage from './Pages/ConverterPage';
 import Home from './Pages/Home';
+import About from './Pages/About';
 import Contact from './Pages/Contact';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/" element={<Home/>} />
           <Route exact path="/converter" element={<ConverterPage/>} />
           <Route exact path="/contact" element={<Contact/>} />
+          <Route exact path="/about" element={<About/>} />
         </Routes>
         <Footer/>
       </Router>

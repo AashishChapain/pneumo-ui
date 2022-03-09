@@ -16,6 +16,7 @@ import Select from '@mui/material/Select';
 import axios from "axios";
 import Dropdown from "./Dropdown";
 import { padding } from "@mui/system";
+import { saveAs } from 'file-saver';
 import TextContainer from "./TextContainer";
 import Backdrop from '@mui/material/Backdrop';
 import Video from '../Video/backVideo.mp4';
@@ -72,7 +73,7 @@ const img = {
   height: "60vh",
   objectFit: "scale-down"
 };
-
+let downloadLink='';
 
 
 const ImageContainer = () => {
@@ -137,6 +138,7 @@ const ImageContainer = () => {
         console.log(data);
         setFetchingImage(false);
         setnewImages("http://127.0.0.1:8000" + data.outputImage);
+        const downloadLink="http://127.0.0.1:8000" + data.outputImage;
         setnewImageArrived(true);
         setisLoading(false);
         console.log("new image arrived");
@@ -166,6 +168,7 @@ const ImageContainer = () => {
       const data = res.data;
       const resultImage = data.outputImage;
       setnewImages("http://127.0.0.1:8000" + resultImage);
+      downloadLink="http://127.0.0.1:8000" + resultImage;
       setnewImageArrived(true);
       setisLoading(false);
       console.log("new image arrived");
@@ -186,7 +189,7 @@ const ImageContainer = () => {
   }
 
   const downloadImage = () => {
-    console.log("downloaded image");
+    saveAs(downloadLink, 'segmentedImage.jpg');
   }
   // const [open, setOpen] = React.useState(false);
   // const handleClose = () => {
@@ -228,14 +231,14 @@ const ImageContainer = () => {
   else if (isLoading) {
     return (
       <>
-        <VideoBg autoPlay muted src={Video} type='video/mp4' />
+        <VideoBg autoPlay muted loop src={Video} type='video/mp4' />
       </>
     );
   }
   else if (newImageArrived) {
     return (
       <>
-        <TextContainer message={"Segmented Image from the model "} />
+        <TextContainer message={"Segmented Image from the model"} />
         <div className="container" style={thumbsContainer}>
           <div style={thumb}>
             <div style={thumbInner}>

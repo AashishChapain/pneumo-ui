@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link as LinkS } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   faGithubAlt,
@@ -82,6 +82,9 @@ const Footer = () => {
       <div>
           <NavItems>
               <Links to="/contact"><FontAwesomeIcon icon={faPhoneAlt} style={iconstyle} /> Contact us</Links>
+          </NavItems>
+          <NavItems>
+              <Links to="/"><FontAwesomeIcon icon={faHome} style={iconstyle} /> Home</Links>
           </NavItems>
       </div>
       <p style={paragraph}>&copy;2022 Pneumothorax Segmentation App | All Right Reserved | <Links to="#">Terms and Condition</Links></p>

@@ -33,7 +33,7 @@ const Links = styled(LinkS)`
         padding: 0px 5px;
         &:hover{
             transition: all 0.2s ease-in-out;
-            color:#01Bf71;
+            color:#000;
         }
     `
 const Navbar = () => {
@@ -60,7 +60,7 @@ const Navbar = () => {
                                 <Links to="/contact"><FontAwesomeIcon icon={faPhoneAlt} style={iconstyle} /> Contact us</Links>
                             </Navlinks>
                             <Navlinks>
-                                <Links to="/contact"><FontAwesomeIcon icon={faInfo} style={iconstyle} /> About us</Links>
+                                <Links to="/about"><FontAwesomeIcon icon={faInfo} style={iconstyle} /> About us</Links>
                             </Navlinks>
                         </NavItems>
                     </NavMenu>
