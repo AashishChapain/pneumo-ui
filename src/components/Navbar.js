@@ -43,8 +43,8 @@ const Navbar = () => {
             <nav className="navbar" style={{color: 'red', backgroundColor: '#6C63FF'}}>
                 <div className="container-fluid d-flex mx-3 my-1">
                     <Links className="navbar-brand d-flex" to="/">
-                        <img src={logo} alt="..." height="60" />
-                        <div className='mx-2'>Pneumothorax <br /> Segmentation</div>
+                        {/* <img src={logo} alt="..." height="60" /> */}
+                        <div className='mx-2'><b>Pneumothorax Segmentation</b></div>
                     </Links>
 
                     <NavMenu>

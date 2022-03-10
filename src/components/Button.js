@@ -31,17 +31,21 @@ const Button = (props) => {
     fontSize: "2rem",
     paddingTop: "4px",
     paddingLeft: "5px",
-    marginLeft: "2rem"
+    marginLeft: "2rem",
   }
 
   return <>
     <div className="fluid-container d-flex my-4 justify-content-center">
       <Buttons to="/converter" onClick={props.task} type='submit'>
-        {props.name} <FontAwesomeIcon icon={faAngleDoubleRight} style={buttonstyle} />
+        {props.name}
+        { props.show ? <FontAwesomeIcon icon={faAngleDoubleRight} style={buttonstyle} />
+         : null }
       </Buttons>
 
     </div>
   </>;
 };
-
+Button.defaultProps={
+  show:false
+}
 export default Button;

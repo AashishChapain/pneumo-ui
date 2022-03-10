@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import dragNdrop from '../images/drgndrop.png';
 import { useDropzone } from 'react-dropzone';
-// import Button from '../components/Button';
-import Button from '@mui/material/Button';
+import Button from '../components/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import ReactLoading from "react-loading";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -20,7 +20,9 @@ import { saveAs } from 'file-saver';
 import TextContainer from "./TextContainer";
 import Backdrop from '@mui/material/Backdrop';
 import Video from '../Video/backVideo.mp4';
+import LoadingScreen from 'react-loading-screen';
 const ImageNText = styled.div`
+
 
 text-align: center;
 justify-content: center;
@@ -216,12 +218,12 @@ const ImageContainer = () => {
   if (imagePreview) {
     return (
       <>
-        <TextContainer message={"Select the method and Press convert"} />
+        <TextContainer message={"Select the method and Press Segment"} />
         <div className="container" style={thumbsContainer}>
           {thumbs}
         </div>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
-          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={handleSubmit} >Convert</Button>
+          <Button name='Segment' task={handleSubmit} arrow='false' />
           {/* <button type="button" className="btn btn-dark" onClick={handleSubmit}>Convert</button> */}
           {/* <Button name="Convert" task={handleSubmit}></Button> */}
         </div>
@@ -231,7 +233,25 @@ const ImageContainer = () => {
   else if (isLoading) {
     return (
       <>
-        <VideoBg autoPlay muted loop src={Video} type='video/mp4' />
+        {/* <VideoBg autoPlay muted loop src={Video} type='video/mp4' /> */}
+        {/* <LoadingScreen
+    loading={true}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    logoSrc='/{img}'
+    text='Here an introduction sentence (Optional)' */}
+            {/* <div className='container' style={{position: 'absolute', left:'50%', top:'50%', transform:'translate(-50%, -50%)', padding:'10px'}}>  */}
+      
+      <div style={{height:'500px', width:'120px', marginLeft:'auto', marginRight:'auto', paddingTop:'10%'}}><ReactLoading
+        type="spin"
+        color="#6C63FF"
+        height={400}
+        width={150}
+      />
+      </div>
+
+      {/* </div> */}
       </>
     );
   }
@@ -251,7 +271,7 @@ const ImageContainer = () => {
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
-          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={downloadImage} >Download</Button>
+          <Button name='Download' task={downloadImage} />
 
         </div>
       </>)
@@ -277,7 +297,7 @@ const ImageContainer = () => {
         </div>
 
         <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", padding: "10px 20px" }}>
-          <Button variant="contained" sx={{ backgroundColor: "black", margin: "5px", padding: '16px' }} size="large" onClick={throwError} >Convert</Button>
+        {/* <Button name="Select Image" task={throwError} /> */}
 
         </div>
       </>
